@@ -1,10 +1,14 @@
 import "../styles/Rightpart.css";
+import NewMessage from "./NewMessage";
+import AllMessages from "./AllMessages";
+import ProfileSide from "./ProfileSide";
 
 export default function Rightpart() {
   return (
-    <main>
-      <div className="left-part"></div>
-      <div className="right-part"></div>
-    </main>
+    <>
+      <NewMessage />
+      <AllMessages />
+      <ProfileSide />
+    </>
   );
 }
