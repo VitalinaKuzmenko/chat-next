@@ -5,7 +5,7 @@ import ProfileMessages from "./ProfileMessages";
 
 export default function Leftpart() {
   return (
-    <div>
+    <div className="w-1/2 bg-slate-200">
       <div className="left-head">
         <Buttons />
         <Search />

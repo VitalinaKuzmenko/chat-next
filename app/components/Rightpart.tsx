@@ -5,10 +5,10 @@ import ProfileSide from "./ProfileSide";
 
 export default function Rightpart() {
   return (
-    <>
+    <div className="w-1/2 flex flex-col">
       <NewMessage />
-      <AllMessages />
-      <ProfileSide />
-    </>
+      {/* <AllMessages />
+      <ProfileSide /> */}
+    </div>
   );
 }

@@ -11,10 +11,10 @@ export default function NewMessage() {
   }
 
   return (
-    <>
+    <div className="flex flex-col">
       <div className="right-head">Create a new message</div>
       <div className="new-message">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="flex flex-col">
           <label htmlFor="name">Name:</label>
           <input
             type="text"
@@ -33,6 +33,6 @@ export default function NewMessage() {
           <button type="submit">Send message</button>
         </form>
       </div>
-    </>
+    </div>
   );
 }
