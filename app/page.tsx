@@ -9,9 +9,9 @@ import Message from "./components/Message";
 
 const Home = () => {
   return (
-    <div className="flex font-abc">
-      <h1>Vitalina's chat</h1>
-      <hr />
+    <div className="flex flex-col text-center text-white font-abc m-10  my-0 mx-auto w-full px-20 md:w-2/3">
+      <h1 className="text-5xl">Vitalina's chat</h1>
+      <hr className="" />
       <Buttons />
       <NewMessage />
       <hr />
@@ -19,7 +19,8 @@ const Home = () => {
       {/* mapping through profiles */}
       <ProfileAvatar />
       <Sort />
-      {/* mapping throught messages */}
+      <hr />
+      {/* mapping through messages */}
       <Message />
     </div>
   );
