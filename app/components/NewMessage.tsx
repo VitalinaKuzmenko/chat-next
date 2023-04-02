@@ -22,7 +22,7 @@ const NewMessage = () => {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Enter your name..."
-            className="text-2xl rounded-2xl pt-1 mb-2 text-blue pl-4 text-xl"
+            className="bg-grey rounded-2xl pt-1 mb-2 text-blue pl-4 text-xl placeholder:text-blue"
           />
 
           <label htmlFor="text" className="pl-3 text-2xl">
@@ -34,7 +34,7 @@ const NewMessage = () => {
             onChange={(e) => setMessage(e.target.value)}
             rows={4}
             placeholder="Enter your message..."
-            className="text-2xl rounded-2xl pt-1 mb-2 text-blue pl-4 text-xl"
+            className="bg-grey rounded-2xl pt-1 mb-2 text-blue pl-4 text-xl placeholder:text-blue"
           ></textarea>
 
           <button

@@ -8,7 +8,7 @@ const ProfileAvatar = () => {
       style={{ minWidth: "80px", minHeight: "80px", flexShrink: 0 }}
     >
       <Image
-        className="bg-white rounded-full block"
+        className="bg-white rounded-full block cursor-pointer"
         src={Avatar}
         alt="Profile avatar"
         width={80}

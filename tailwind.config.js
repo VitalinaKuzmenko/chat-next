@@ -8,6 +8,7 @@ module.exports = {
     // Or if using `src` directory:
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+
   theme: {
     extend: {},
     fontFamily: {
@@ -29,6 +30,9 @@ module.exports = {
       white: "#FFFFFF",
       transparent: "#66000000",
     },
+    maxHeight: {
+      128: "32rem",
+    },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 };
