@@ -17,7 +17,10 @@ const Home = () => {
       <hr />
       <Search />
       {/* mapping through profiles */}
-      <ProfileAvatar />
+      <div className="profiles bg-rose rounded-2xl flex justify-start overflow-x-auto whitespace-nowrap">
+        <ProfileAvatar />
+      </div>
+
       <Sort />
       <hr />
       {/* mapping through messages */}

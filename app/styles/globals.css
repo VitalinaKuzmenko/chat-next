@@ -15,3 +15,7 @@ button:hover {
   box-shadow: 0 0 10px 0 #fecbce inset, 0 0 10px 2px #fecbce;
   border: 0 solid #fecbce;
 }
+
+.image {
+  width: 100px;
+}
