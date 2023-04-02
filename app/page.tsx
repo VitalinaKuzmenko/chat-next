@@ -3,6 +3,9 @@ import React from "react";
 import Buttons from "./components/Buttons";
 import NewMessage from "./components/NewMessage";
 import Search from "./components/Search";
+import ProfileAvatar from "./components/ProfileAvatar";
+import Sort from "./components/Sort";
+import Message from "./components/Message";
 
 const Home = () => {
   return (
@@ -13,6 +16,11 @@ const Home = () => {
       <NewMessage />
       <hr />
       <Search />
+      {/* mapping through profiles */}
+      <ProfileAvatar />
+      <Sort />
+      {/* mapping throught messages */}
+      <Message />
     </div>
   );
 };
