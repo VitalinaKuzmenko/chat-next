@@ -1,7 +1,6 @@
-import "../styles/NewMessage.css";
-import { useState } from "react";
+import React, { useState } from "react";
 
-export default function NewMessage() {
+const NewMessage = () => {
   const [name, setName] = useState<string>("");
   const [text, setText] = useState<string>("");
 
@@ -35,4 +34,6 @@ export default function NewMessage() {
       </div>
     </div>
   );
-}
+};
+
+export default NewMessage;

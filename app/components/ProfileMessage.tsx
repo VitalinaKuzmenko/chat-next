@@ -1,4 +1,4 @@
-export default function ProfileMessage() {
+const ProfileMessage = () => {
   return (
     <div>
       <img src="#" alt="Profile picture" />
@@ -7,4 +7,6 @@ export default function ProfileMessage() {
       <p>Text</p>
     </div>
   );
-}
+};
+
+export default ProfileMessage;

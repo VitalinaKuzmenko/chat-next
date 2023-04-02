@@ -1,4 +1,4 @@
-export default function Search() {
+const Search = () => {
   return (
     <div>
       <input
@@ -10,4 +10,6 @@ export default function Search() {
       />
     </div>
   );
-}
+};
+
+export default Search;

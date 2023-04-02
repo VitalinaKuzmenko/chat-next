@@ -1,4 +1,4 @@
-export default function Sort() {
+const Sort = () => {
   return (
     <div className="">
       <p>Sort By:</p>
@@ -7,4 +7,6 @@ export default function Sort() {
       </p>
     </div>
   );
-}
+};
+
+export default Sort;
