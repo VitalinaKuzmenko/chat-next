@@ -1,4 +1,4 @@
-const Buttons = () => {
+const Buttons = ({ setMessages }) => {
   return (
     <div className="Buttons m-4">
       <button className="w-40 bg-rose py-0.5 px-4 rounded-2xl text-center text-blue text-xl mx-2">

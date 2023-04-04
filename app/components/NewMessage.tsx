@@ -3,10 +3,17 @@ import React, { useState } from "react";
 const NewMessage = () => {
   const [name, setName] = useState<string>("");
   const [message, setMessage] = useState<string>("");
+  const [newMessage, setNewMessage] = useState<NewMessage>({});
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     console.log(`Name: ${name}, Message: ${message}`);
+    setNewMessage({ from: name, text: message });
+  }
+
+  interface NewMessage {
+    from?: string;
+    text?: string;
   }
 
   return (

@@ -2,8 +2,9 @@ import Avatar from "../media/avatars/Avatar_1.svg";
 import Image from "next/image";
 import trash from "../media/icons/trash-icon.svg";
 import pen from "../media/icons/pen-icon.svg";
+import { Message } from "../page";
 
-const ProfileMessage = () => {
+const ProfileMessage = ({ message }: { message: Message }) => {
   return (
     <div className="my-2">
       <div className="chat chat-end my-1 flex justify-center">
@@ -16,9 +17,13 @@ const ProfileMessage = () => {
             height={60}
           />
           <div className="ml-2 w-full">
-            <p className="flex justify-self-start text-blue text-2xl">Name</p>
+            <p className="flex justify-self-start text-blue text-2xl">
+              {message.from}
+            </p>
             <div className="flex justify-between">
-              <p className=" text-blue text-xl">Text</p>
+              <p className=" text-blue text-xl flex flex-wrap">
+                {message.text}
+              </p>
               <div className="flex mr-2">
                 <Image
                   className="mx-1 pb-1 cursor-pointer"
@@ -39,7 +44,7 @@ const ProfileMessage = () => {
           </div>
         </div>
       </div>
-      <p className="text-right mr-12 text-rose text-lg">Time</p>
+      <p className="text-right mr-12 text-rose text-lg">{message.timeSent}</p>
     </div>
   );
 };
