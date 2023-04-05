@@ -1,4 +1,5 @@
 "use client";
+import msgjson from "./messages.json";
 import React, { useState, useEffect } from "react";
 import Buttons from "./components/Buttons";
 import NewMessage from "./components/NewMessage";
@@ -23,13 +24,53 @@ const Home = () => {
       timeSent: "20-03-2023 05:03",
     },
   ]);
+  const [people, setPeople] = useState<{ name: string; avatar: string }[]>([]);
+
+  // useEffect(() => {
+  //   fetch("https://vitalina-kuzmenko-chat-server.glitch.me/messages")
+  //     .then((response) => response.json())
+  //     .then((data: Message[]) => {
+  //       const newPeople = { ...people };
+  //       data.forEach((message) => {
+  //         if (!newPeople[message.from]) {
+  //           // if this person's details haven't been added yet, create a new entry with a default avatar
+  //           newPeople[message.from] = {
+  //             name: message.from
+  //             avatar: "../media/avatars/Avatar_1.svg",
+  //           };
+  //         }
+  //       });
+  //       setPeople(newPeople);
+  //       setMessages(data);
+  //       console.log("here array");
+  //       console.log(people);
+  //     })
+  //     .catch((error) => console.error(error));
+  // }, [setMessages, people]);
 
   useEffect(() => {
-    fetch("https://vitalina-kuzmenko-chat-server.glitch.me/messages")
-      .then((response) => response.json())
-      .then((data: Message[]) => setMessages(data))
-      .catch((error) => console.error(error));
+    console.log(msgjson);
+    const newPeople: { [key: string]: { name: string; avatar: string } } = {};
+    msgjson.forEach((message) => {
+      if (!newPeople[message.from]) {
+        // if this person's details haven't been added yet, create a new entry with a default avatar
+        console.log("new person ", message.from);
+        newPeople[message.from] = {
+          name: message.from,
+          avatar: "/avatars/Avatar_2.svg",
+        };
+      }
+    });
+    setPeople(Object.values(newPeople));
+    setMessages(msgjson);
   }, [setMessages]);
+
+  //just for console log people array
+  useEffect(() => {
+    console.log("People:", people);
+    console.log("LENGTH OF ARRAY");
+    console.log(people.length);
+  }, [people]);
 
   return (
     <div className="flex flex-col text-center text-white font-abc m-10  my-0 mx-auto w-full px-20 md:w-2/3 min-h-screen">
@@ -47,9 +88,18 @@ const Home = () => {
       <Sort />
       <hr />
       {/* mapping through messages */}
-      <div className="mb-10 max-h-128 overflow-y-auto whitespace-nowrap">
+      <div className="mb-10 max-h-128 overflow-y-auto text-left">
         {messages.map((message: Message) => {
-          return <ProfileMessage key={message.id} message={message} />;
+          const person = Object.entries(people).find(
+            ([_, person]) => message.from === person.name
+          );
+          return (
+            <ProfileMessage
+              key={message.id}
+              message={message}
+              avatar={person?.[1]?.avatar}
+            />
+          );
         })}
       </div>
     </div>
