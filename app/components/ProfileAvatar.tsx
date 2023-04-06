@@ -1,7 +1,12 @@
 import Avatar from "/public/avatars/Avatar_1.svg";
 import Image from "next/image";
 
-const ProfileAvatar = ({ name, avatar }) => {
+interface ProfileAvatarProps {
+  name: string;
+  avatar: string;
+}
+
+const ProfileAvatar = ({ name, avatar }: ProfileAvatarProps) => {
   return (
     <div
       className="image py-3 px-2 cursor-pointer"

@@ -32,6 +32,9 @@ const Home = () => {
   const [people, setPeople] = useState<PersonAvatar[]>([]);
   //for showing and closing new message window
   const [newMessageStatus, setNewMessageStatus] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>(
+    "Loading messages..."
+  );
 
   //generating random avatar path
   const generateRandomAvatar = () => {
@@ -76,23 +79,27 @@ const Home = () => {
 
   return (
     <>
-      {messages.length !== 0 ? (
-        <div className="flex flex-col text-center text-white font-abc m-10  my-0 mx-auto w-full px-20 md:w-2/3 min-h-screen">
-          <h1 className="text-5xl">Vitalina chat</h1>
-          <hr className="" />
-          <Buttons
-            setMessages={setMessages}
-            setNewMessageStatus={setNewMessageStatus}
-          />
-          <NewMessage
-            setMessages={setMessages}
-            setPeople={setPeople}
-            newMessageStatus={newMessageStatus}
-            setNewMessageStatus={setNewMessageStatus}
-          />
-          <hr />
-          <Search />
-          {/* mapping through profiles */}
+      <div className="flex flex-col text-center text-white font-abc m-10  my-0 mx-auto w-full px-20 md:w-2/3 min-h-screen">
+        <h1 className="text-5xl">Vitalina chat</h1>
+        <hr className="" />
+        <Buttons
+          setMessages={setMessages}
+          setNewMessageStatus={setNewMessageStatus}
+        />
+        <NewMessage
+          setMessages={setMessages}
+          setPeople={setPeople}
+          newMessageStatus={newMessageStatus}
+          setNewMessageStatus={setNewMessageStatus}
+        />
+        <hr />
+        <Search
+          messages={messages}
+          setMessages={setMessages}
+          setErrorMessage={setErrorMessage}
+        />
+        {/* mapping through profiles */}
+        {people.length !== 0 || people === undefined || people === null ? (
           <div className="profiles bg-rose rounded-2xl flex justify-start overflow-x-auto whitespace-nowrap">
             {people.map((person) => {
               return (
@@ -104,10 +111,16 @@ const Home = () => {
               );
             })}
           </div>
+        ) : (
+          <p className="text-xl mt-5">Loading data...</p>
+        )}
 
-          <Sort />
-          <hr />
-          {/* mapping through messages */}
+        <Sort />
+        <hr />
+        {/* mapping through messages */}
+        {messages.length !== 0 ||
+        messages === undefined ||
+        messages === null ? (
           <div className="mb-10 max-h-128 overflow-y-auto text-left">
             {messages.map((message: Message) => {
               const person = Object.entries(people).find(
@@ -122,10 +135,10 @@ const Home = () => {
               );
             })}
           </div>
-        </div>
-      ) : (
-        <p>Loading data...</p>
-      )}
+        ) : (
+          <p className="text-xl mt-5">{errorMessage}</p>
+        )}
+      </div>
     </>
   );
 };
