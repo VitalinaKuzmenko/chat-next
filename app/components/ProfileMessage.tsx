@@ -7,7 +7,7 @@ import { Message } from "../page";
 
 interface ProfileMessageProps {
   message: Message;
-  avatar: string | undefined;
+  avatar: JSX.Element;
 }
 
 const ProfileMessage = ({ message, avatar }: ProfileMessageProps) => {
@@ -15,13 +15,10 @@ const ProfileMessage = ({ message, avatar }: ProfileMessageProps) => {
     <div className="my-2">
       <div className="chat chat-end my-1 flex justify-center">
         <div className="chat-bubble w-full bg-grey flex">
-          <Image
-            className="bg-white rounded-full block cursor-pointer w-12 h-12"
-            src={avatar || Avatar}
-            alt="Profile avatar"
-            width={80}
-            height={80}
-          />
+          <div className="bg-white rounded-full block cursor-pointer w-12 h-12">
+            {avatar}
+          </div>
+
           <div className="ml-2 w-full">
             <p className="flex justify-self-start text-blue text-2xl">
               {message.from}

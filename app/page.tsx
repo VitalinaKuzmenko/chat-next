@@ -1,5 +1,4 @@
 "use client";
-import msgjson from "./messages.json";
 import React, { useState, useEffect } from "react";
 import Buttons from "./components/Buttons";
 import NewMessage from "./components/NewMessage";
@@ -7,6 +6,8 @@ import Search from "./components/Search";
 import ProfileAvatar from "./components/ProfileAvatar";
 import Sort from "./components/Sort";
 import ProfileMessage from "./components/ProfileMessage";
+import { getRandomOptions } from "./BigHeadsAvatar";
+import { BigHead } from "@bigheads/core";
 
 export interface Message {
   id: number;
@@ -17,7 +18,7 @@ export interface Message {
 
 export interface PersonAvatar {
   name: string;
-  avatar: string;
+  avatar: JSX.Element;
 }
 
 const Home = () => {
@@ -36,26 +37,22 @@ const Home = () => {
     "Loading messages..."
   );
 
-  //generating random avatar path
-  const generateRandomAvatar = () => {
-    const randomNumber = Math.floor(Math.random() * 16) + 1;
-    return `/avatars/Avatar_${randomNumber}.svg`;
-  };
-
   const displayMessages = () => {
     fetch("https://vitalina-kuzmenko-chat-server.glitch.me/messages")
       .then((response) => response.json())
       .then((data: Message[]) => {
         console.log("fetching messages from api");
-        const newPeople: { [key: string]: { name: string; avatar: string } } =
-          {};
+        const newPeople: {
+          [key: string]: { name: string; avatar: JSX.Element };
+        } = {};
         data.forEach((message) => {
           if (!newPeople[message.from]) {
             // if this person's details haven't been added yet, create a new entry with a default avatar
             console.log("new person ", message.from);
+
             newPeople[message.from] = {
               name: message.from,
-              avatar: generateRandomAvatar(),
+              avatar: <BigHead {...getRandomOptions()} />,
             };
           }
         });
@@ -103,12 +100,14 @@ const Home = () => {
           <div className="profiles bg-rose rounded-2xl flex justify-start overflow-x-auto whitespace-nowrap">
             {people.map((person) => {
               return (
-                <ProfileAvatar
-                  key={people.indexOf(person)}
-                  name={person.name}
-                  avatar={person.avatar}
-                  setMessages={setMessages}
-                />
+                <>
+                  <ProfileAvatar
+                    key={people.indexOf(person)}
+                    name={person.name}
+                    avatar={person.avatar}
+                    setMessages={setMessages}
+                  />
+                </>
               );
             })}
           </div>
@@ -124,16 +123,20 @@ const Home = () => {
         messages === null ? (
           <div className="mb-10 max-h-128 overflow-y-auto text-left">
             {messages.map((message: Message) => {
-              const person = Object.entries(people).find(
-                ([_, person]) => message.from === person.name
+              const person = Object.values(people).find(
+                (person) => message.from === person.name
               );
-              return (
-                <ProfileMessage
-                  key={message.id}
-                  message={message}
-                  avatar={person?.[1]?.avatar}
-                />
-              );
+              if (person && person.avatar) {
+                // Only render if person and avatar are defined
+                return (
+                  <ProfileMessage
+                    key={message.id}
+                    message={message}
+                    avatar={person.avatar}
+                  />
+                );
+              }
+              return null; // Return null otherwise to avoid rendering an empty element
             })}
           </div>
         ) : (

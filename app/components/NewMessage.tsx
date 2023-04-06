@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Message, PersonAvatar } from "../page";
+import { getRandomOptions } from "../BigHeadsAvatar";
+import { BigHead } from "@bigheads/core";
 
 type NewMessageProps = {
   setMessages: React.Dispatch<React.SetStateAction<Message[]>>;
@@ -16,12 +18,6 @@ const NewMessage = ({
 }: NewMessageProps) => {
   const [name, setName] = useState<string>("");
   const [message, setMessage] = useState<string>("");
-
-  //generating random avatar path
-  const generateRandomAvatar = () => {
-    const randomNumber = Math.floor(Math.random() * 16) + 1;
-    return `/avatars/Avatar_${randomNumber}.svg`;
-  };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -50,7 +46,7 @@ const NewMessage = ({
               console.log("new person ", message.from);
               newPeople.push({
                 name: message.from,
-                avatar: generateRandomAvatar(),
+                avatar: <BigHead {...getRandomOptions()} />,
               });
             }
           });
