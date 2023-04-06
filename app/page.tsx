@@ -26,6 +26,12 @@ const Home = () => {
   ]);
   const [people, setPeople] = useState<{ name: string; avatar: string }[]>([]);
 
+  //generating random avatar path
+  const generateRandomAvatar = () => {
+    const randomNumber = Math.floor(Math.random() * 16) + 1;
+    return `/avatars/Avatar_${randomNumber}.svg`;
+  };
+
   useEffect(() => {
     fetch("https://vitalina-kuzmenko-chat-server.glitch.me/messages")
       .then((response) => response.json())
@@ -38,19 +44,17 @@ const Home = () => {
             console.log("new person ", message.from);
             newPeople[message.from] = {
               name: message.from,
-              avatar: "/avatars/Avatar_2.svg",
+              avatar: generateRandomAvatar(),
             };
           }
         });
         setPeople(Object.values(newPeople));
         setMessages(data);
-        console.log("here array");
-        console.log(people);
       })
       .catch((error) => console.error(error));
   }, [setMessages]);
 
-  //fo cases when I have too many requests on server
+  //for cases when I have too many requests on server
   // useEffect(() => {
   //   console.log(msgjson);
   //   const newPeople: { [key: string]: { name: string; avatar: string } } = {};
