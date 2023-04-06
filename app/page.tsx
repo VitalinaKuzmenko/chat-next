@@ -89,7 +89,15 @@ const Home = () => {
       <Search />
       {/* mapping through profiles */}
       <div className="profiles bg-rose rounded-2xl flex justify-start overflow-x-auto whitespace-nowrap">
-        <ProfileAvatar />
+        {people.map((person) => {
+          return (
+            <ProfileAvatar
+              key={people.indexOf(person)}
+              name={person.name}
+              avatar={person.avatar}
+            />
+          );
+        })}
       </div>
 
       <Sort />
