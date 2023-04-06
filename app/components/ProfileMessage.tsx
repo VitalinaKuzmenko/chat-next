@@ -1,8 +1,8 @@
-import Avatar from "/avatars/Avatar_1.svg";
+import Avatar from "/public/avatars/Avatar_1.svg";
 
 import Image from "next/image";
-import trash from "../media/icons/trash-icon.svg";
-import pen from "../media/icons/pen-icon.svg";
+import trash from "/public/icons/trash-icon.svg";
+import pen from "/public/icons/pen-icon.svg";
 import { Message } from "../page";
 
 interface ProfileMessageProps {
@@ -17,7 +17,6 @@ const ProfileMessage = ({ message, avatar }: ProfileMessageProps) => {
         <div className="chat-bubble w-full bg-grey flex">
           <Image
             className="bg-white rounded-full block cursor-pointer w-12 h-12"
-            // src={Avatar}
             src={avatar || Avatar}
             alt="Profile avatar"
             width={80}

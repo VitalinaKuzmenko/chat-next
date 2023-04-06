@@ -1,4 +1,4 @@
-import Arrow from "../media/icons/arrow-icon.svg";
+import Arrow from "/public/icons/arrow-icon.svg";
 import Image from "next/image";
 
 const Sort = () => {

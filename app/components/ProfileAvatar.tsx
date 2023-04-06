@@ -1,4 +1,4 @@
-import Avatar from "../media/avatars/Avatar_1.svg";
+import Avatar from "/public/avatars/Avatar_1.svg";
 import Image from "next/image";
 
 const ProfileAvatar = () => {
