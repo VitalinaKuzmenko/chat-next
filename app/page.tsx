@@ -107,6 +107,7 @@ const Home = () => {
                   key={people.indexOf(person)}
                   name={person.name}
                   avatar={person.avatar}
+                  setMessages={setMessages}
                 />
               );
             })}
