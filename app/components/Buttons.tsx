@@ -1,9 +1,9 @@
 import { Message } from "../page";
 
-type ButtonsProps = {
+interface ButtonsProps {
   setMessages: React.Dispatch<React.SetStateAction<Message[]>>;
   setNewMessageStatus: React.Dispatch<React.SetStateAction<boolean>>;
-};
+}
 
 const Buttons = ({ setMessages, setNewMessageStatus }: ButtonsProps) => {
   const showNewMessageOption = () => {

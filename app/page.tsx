@@ -115,7 +115,7 @@ const Home = () => {
           <p className="text-xl mt-5">Loading data...</p>
         )}
 
-        <Sort />
+        <Sort setMessages={setMessages} />
         <hr />
         {/* mapping through messages */}
         {messages.length !== 0 ||

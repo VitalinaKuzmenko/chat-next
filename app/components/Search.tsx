@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Message } from "../page";
 
-type SearchProps = {
+interface SearchProps {
   messages: Message[];
   setMessages: React.Dispatch<React.SetStateAction<Message[]>>;
   setErrorMessage: React.Dispatch<React.SetStateAction<string>>;
-};
+}
 
 const Search = ({ messages, setMessages, setErrorMessage }: SearchProps) => {
   const [searchTerm, setSearchTerm] = useState("");
