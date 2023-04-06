@@ -25,6 +25,8 @@ const Home = () => {
     },
   ]);
   const [people, setPeople] = useState<{ name: string; avatar: string }[]>([]);
+  //for showing and closing new message window
+  const [newMessageStatus, setNewMessageStatus] = useState<boolean>(false);
 
   //generating random avatar path
   const generateRandomAvatar = () => {
@@ -36,9 +38,10 @@ const Home = () => {
     fetch("https://vitalina-kuzmenko-chat-server.glitch.me/messages")
       .then((response) => response.json())
       .then((data: Message[]) => {
+        console.log("fetching messages from api");
         const newPeople: { [key: string]: { name: string; avatar: string } } =
           {};
-        msgjson.forEach((message) => {
+        data.forEach((message) => {
           if (!newPeople[message.from]) {
             // if this person's details haven't been added yet, create a new entry with a default avatar
             console.log("new person ", message.from);
@@ -83,8 +86,15 @@ const Home = () => {
     <div className="flex flex-col text-center text-white font-abc m-10  my-0 mx-auto w-full px-20 md:w-2/3 min-h-screen">
       <h1 className="text-5xl">Vitalina's chat</h1>
       <hr className="" />
-      <Buttons setMessages={setMessages} />
-      {/* <NewMessage /> */}
+      <Buttons
+        setMessages={setMessages}
+        setNewMessageStatus={setNewMessageStatus}
+      />
+      <NewMessage
+        setMessages={setMessages}
+        newMessageStatus={newMessageStatus}
+        setNewMessageStatus={setNewMessageStatus}
+      />
       <hr />
       <Search />
       {/* mapping through profiles */}
