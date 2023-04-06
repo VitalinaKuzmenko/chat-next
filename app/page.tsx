@@ -39,8 +39,7 @@ const Home = () => {
     return `/avatars/Avatar_${randomNumber}.svg`;
   };
 
-  //displaying all the messages and generating profiles
-  useEffect(() => {
+  const displayMessages = () => {
     fetch("https://vitalina-kuzmenko-chat-server.glitch.me/messages")
       .then((response) => response.json())
       .then((data: Message[]) => {
@@ -61,25 +60,12 @@ const Home = () => {
         setMessages(data);
       })
       .catch((error) => console.error(error));
-  }, [setMessages, setPeople]);
+  };
 
-  //for cases when I have too many requests on server
-  // useEffect(() => {
-  //   console.log(msgjson);
-  //   const newPeople: { [key: string]: { name: string; avatar: string } } = {};
-  //   msgjson.forEach((message) => {
-  //     if (!newPeople[message.from]) {
-  //       // if this person's details haven't been added yet, create a new entry with a default avatar
-  //       console.log("new person ", message.from);
-  //       newPeople[message.from] = {
-  //         name: message.from,
-  //         avatar: "/avatars/Avatar_1.svg",
-  //       };
-  //     }
-  //   });
-  //   setPeople(Object.values(newPeople));
-  //   setMessages(msgjson);
-  // }, [setMessages]);
+  //displaying all the messages and generating profiles
+  useEffect(() => {
+    displayMessages();
+  }, [setMessages, setPeople]);
 
   //just for console log people array
   useEffect(() => {
@@ -89,52 +75,58 @@ const Home = () => {
   }, [people]);
 
   return (
-    <div className="flex flex-col text-center text-white font-abc m-10  my-0 mx-auto w-full px-20 md:w-2/3 min-h-screen">
-      <h1 className="text-5xl">Vitalina's chat</h1>
-      <hr className="" />
-      <Buttons
-        setMessages={setMessages}
-        setNewMessageStatus={setNewMessageStatus}
-      />
-      <NewMessage
-        setMessages={setMessages}
-        setPeople={setPeople}
-        newMessageStatus={newMessageStatus}
-        setNewMessageStatus={setNewMessageStatus}
-      />
-      <hr />
-      <Search />
-      {/* mapping through profiles */}
-      <div className="profiles bg-rose rounded-2xl flex justify-start overflow-x-auto whitespace-nowrap">
-        {people.map((person) => {
-          return (
-            <ProfileAvatar
-              key={people.indexOf(person)}
-              name={person.name}
-              avatar={person.avatar}
-            />
-          );
-        })}
-      </div>
+    <>
+      {messages.length !== 0 ? (
+        <div className="flex flex-col text-center text-white font-abc m-10  my-0 mx-auto w-full px-20 md:w-2/3 min-h-screen">
+          <h1 className="text-5xl">Vitalina chat</h1>
+          <hr className="" />
+          <Buttons
+            setMessages={setMessages}
+            setNewMessageStatus={setNewMessageStatus}
+          />
+          <NewMessage
+            setMessages={setMessages}
+            setPeople={setPeople}
+            newMessageStatus={newMessageStatus}
+            setNewMessageStatus={setNewMessageStatus}
+          />
+          <hr />
+          <Search />
+          {/* mapping through profiles */}
+          <div className="profiles bg-rose rounded-2xl flex justify-start overflow-x-auto whitespace-nowrap">
+            {people.map((person) => {
+              return (
+                <ProfileAvatar
+                  key={people.indexOf(person)}
+                  name={person.name}
+                  avatar={person.avatar}
+                />
+              );
+            })}
+          </div>
 
-      <Sort />
-      <hr />
-      {/* mapping through messages */}
-      <div className="mb-10 max-h-128 overflow-y-auto text-left">
-        {messages.map((message: Message) => {
-          const person = Object.entries(people).find(
-            ([_, person]) => message.from === person.name
-          );
-          return (
-            <ProfileMessage
-              key={message.id}
-              message={message}
-              avatar={person?.[1]?.avatar}
-            />
-          );
-        })}
-      </div>
-    </div>
+          <Sort />
+          <hr />
+          {/* mapping through messages */}
+          <div className="mb-10 max-h-128 overflow-y-auto text-left">
+            {messages.map((message: Message) => {
+              const person = Object.entries(people).find(
+                ([_, person]) => message.from === person.name
+              );
+              return (
+                <ProfileMessage
+                  key={message.id}
+                  message={message}
+                  avatar={person?.[1]?.avatar}
+                />
+              );
+            })}
+          </div>
+        </div>
+      ) : (
+        <p>Loading data...</p>
+      )}
+    </>
   );
 };
 

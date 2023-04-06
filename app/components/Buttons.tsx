@@ -10,9 +10,22 @@ const Buttons = ({ setMessages, setNewMessageStatus }: ButtonsProps) => {
     setNewMessageStatus(true);
   };
 
+  const showAllMessages = () => {
+    fetch("https://vitalina-kuzmenko-chat-server.glitch.me/messages")
+      .then((response) => response.json())
+      .then((data: Message[]) => {
+        console.log("see all messages button was clicked");
+        setMessages(data);
+      })
+      .catch((error) => console.error(error));
+  };
+
   return (
     <div className="Buttons m-4">
-      <button className="w-40 bg-rose py-0.5 px-4 rounded-2xl text-center text-blue text-xl mx-2">
+      <button
+        onClick={showAllMessages}
+        className="w-40 bg-rose py-0.5 px-4 rounded-2xl text-center text-blue text-xl mx-2"
+      >
         See all messages
       </button>
       <button
