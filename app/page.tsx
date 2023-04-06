@@ -15,6 +15,11 @@ export interface Message {
   timeSent: string;
 }
 
+export interface PersonAvatar {
+  name: string;
+  avatar: string;
+}
+
 const Home = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -24,7 +29,7 @@ const Home = () => {
       timeSent: "20-03-2023 05:03",
     },
   ]);
-  const [people, setPeople] = useState<{ name: string; avatar: string }[]>([]);
+  const [people, setPeople] = useState<PersonAvatar[]>([]);
   //for showing and closing new message window
   const [newMessageStatus, setNewMessageStatus] = useState<boolean>(false);
 
@@ -34,6 +39,7 @@ const Home = () => {
     return `/avatars/Avatar_${randomNumber}.svg`;
   };
 
+  //displaying all the messages and generating profiles
   useEffect(() => {
     fetch("https://vitalina-kuzmenko-chat-server.glitch.me/messages")
       .then((response) => response.json())
@@ -55,7 +61,7 @@ const Home = () => {
         setMessages(data);
       })
       .catch((error) => console.error(error));
-  }, [setMessages]);
+  }, [setMessages, setPeople]);
 
   //for cases when I have too many requests on server
   // useEffect(() => {
@@ -92,6 +98,7 @@ const Home = () => {
       />
       <NewMessage
         setMessages={setMessages}
+        setPeople={setPeople}
         newMessageStatus={newMessageStatus}
         setNewMessageStatus={setNewMessageStatus}
       />
