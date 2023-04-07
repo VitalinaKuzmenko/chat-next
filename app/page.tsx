@@ -48,8 +48,6 @@ const Home = () => {
         data.forEach((message) => {
           if (!newPeople[message.from]) {
             // if this person's details haven't been added yet, create a new entry with a default avatar
-            console.log("new person ", message.from);
-
             newPeople[message.from] = {
               name: message.from,
               avatar: <BigHead {...getRandomOptions()} />,
@@ -70,8 +68,6 @@ const Home = () => {
   //just for console log people array
   useEffect(() => {
     console.log("People:", people);
-    console.log("LENGTH OF ARRAY");
-    console.log(people.length);
   }, [people]);
 
   return (
@@ -100,14 +96,12 @@ const Home = () => {
           <div className="profiles bg-rose rounded-2xl flex justify-start overflow-x-auto whitespace-nowrap">
             {people.map((person) => {
               return (
-                <>
-                  <ProfileAvatar
-                    key={people.indexOf(person)}
-                    name={person.name}
-                    avatar={person.avatar}
-                    setMessages={setMessages}
-                  />
-                </>
+                <ProfileAvatar
+                  key={person.name}
+                  name={person.name}
+                  avatar={person.avatar}
+                  setMessages={setMessages}
+                />
               );
             })}
           </div>
