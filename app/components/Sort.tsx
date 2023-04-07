@@ -8,7 +8,7 @@ interface SortProps {
 }
 
 const Sort = ({ setMessages }: SortProps) => {
-  const sortByLatest = () => {
+  const sortByOldest = () => {
     setMessages((messages) =>
       [...messages].sort((a, b) =>
         moment(b.timeSent, "DD-MM-YYYY HH:mm").isAfter(
@@ -20,7 +20,7 @@ const Sort = ({ setMessages }: SortProps) => {
     );
   };
 
-  const sortByNewest = () => {
+  const sortByLatest = () => {
     setMessages((messages) =>
       [...messages].sort((a, b) =>
         moment(b.timeSent, "DD-MM-YYYY HH:mm").isAfter(
@@ -53,8 +53,8 @@ const Sort = ({ setMessages }: SortProps) => {
           <li className="hover:bg-grey" onClick={sortByLatest}>
             <a>Latest first</a>
           </li>
-          <li className="hover:bg-grey" onClick={sortByNewest}>
-            <a>Newest first</a>
+          <li className="hover:bg-grey" onClick={sortByOldest}>
+            <a>Oldest first</a>
           </li>
         </ul>
       </div>
