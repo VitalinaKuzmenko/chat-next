@@ -76,7 +76,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="flex flex-col text-center text-white font-abc m-10  my-0 mx-auto w-full px-20 md:w-2/3 min-h-screen">
+      <div className="flex flex-col text-center text-white font-abc m-10  my-0 mx-auto w-full px-8 md:w-2/3 min-h-screen md:px-20">
         <h1 className="text-5xl">Vitalina chat</h1>
         <hr className="" />
         <Buttons
@@ -133,6 +133,8 @@ const Home = () => {
                     key={message.id}
                     message={message}
                     avatar={person.avatar}
+                    setMessages={setMessages}
+                    setPeople={setPeople}
                   />
                 );
               }
