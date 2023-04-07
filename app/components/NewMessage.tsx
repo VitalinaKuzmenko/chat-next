@@ -101,12 +101,25 @@ const NewMessage = ({
             className="bg-grey rounded-2xl pt-1 mb-2 text-blue pl-4 text-xl placeholder:text-blue"
           ></textarea>
 
-          <button
-            type="submit"
-            className="flex justify-center self-end w-40 bg-rose py-0.5 px-4 rounded-2xl text-center text-blue text-xl my-3 mx-2"
-          >
-            Send message
-          </button>
+          <div className="flex justify-between">
+            <button
+              type="button"
+              className="flex justify-center self-end w-40 bg-rose py-0.5 px-4 rounded-2xl text-center text-blue text-xl my-3 mx-2"
+              onClick={() => {
+                setNewMessageStatus(false);
+                setName("");
+                setMessage("");
+              }}
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="flex justify-center self-end w-40 bg-rose py-0.5 px-4 rounded-2xl text-center text-blue text-xl my-3 mx-2"
+            >
+              Send message
+            </button>
+          </div>
         </form>
       </div>
     </div>
