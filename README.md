@@ -1,6 +1,6 @@
 # Chat
 
-This page was created for educational purposes. It is a chat where user can Read, Create, Update and Delete messages. Technologies used: Next,js, React, Glitch Api, TailwindCSS, TypeScript.
+This page was created for educational purposes. It is a chat where user can Read, Create, Update and Delete messages. Technologies used: Next.js, React, Glitch Api, TailwindCSS, TypeScript.
 
 ## ⭐️ Features
 
