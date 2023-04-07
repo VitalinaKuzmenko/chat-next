@@ -1,38 +1,38 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Chat
 
-## Getting Started
+This page was created for educational purposes. It is a chat where user can Read, Create, Update and Delete messages. Technologies used: Next,js, React, Glitch Api, TailwindCSS, TypeScript.
 
-First, run the development server:
+## ⭐️ Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+- The user can see all messages.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- The user can see all messages of one person the will be chosen
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- The user can sort messages by newest ones or latest ones.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- The user can create a new message.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- The user can update any message of any person.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- The user can delete a message of any person.
 
-## Learn More
+- The user can see a bigger version of avatar by clicking on avatar inside any message.
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🚀 Deployed Website
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+https://vitalina-chat-next.vercel.app/
 
-## Deploy on Vercel
+## 🚀 Glitch API
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+https://glitch.com/edit/#!/vitalina-kuzmenko-chat-server
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## 💻 Screenshots
+
+![App Screenshot](https://www.dropbox.com/s/rtfcttg0e9rgckp/chat-1.png?raw=1)
+![App Screenshot](https://www.dropbox.com/s/3guxt02718ysbyv/chat-2.png?raw=1)
+
+
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome.
