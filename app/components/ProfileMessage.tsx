@@ -2,7 +2,7 @@ import Image from "next/image";
 import trash from "/public/icons/trash-icon.svg";
 import pen from "/public/icons/pen-icon.svg";
 import { Message, PersonAvatar } from "../page";
-import { useState as useReactState } from "react";
+import { useState } from "react";
 
 interface ProfileMessageProps {
   message: Message;
@@ -17,8 +17,8 @@ const ProfileMessage = ({
   setMessages,
   setPeople,
 }: ProfileMessageProps) => {
-  const [editing, setEditing] = useReactState(false);
-  const [editedMessage, setEditedMessage] = useReactState<string>("");
+  const [editing, setEditing] = useState(false);
+  const [editedMessage, setEditedMessage] = useState<string>("");
 
   const updateMessage = () => {
     // Send a PUT request to the server with the form data
@@ -71,8 +71,27 @@ const ProfileMessage = ({
       <div className="chat chat-end my-1 flex justify-center">
         <div className="chat-bubble w-full bg-grey flex">
           <div className="bg-white rounded-full block cursor-pointer w-12 h-12">
-            {avatar}
+            <label
+              className="cursor-pointer"
+              htmlFor={`my-modal-${message.id}`}
+            >
+              {avatar}
+            </label>
           </div>
+          {/* popup window for big version of avatar */}
+          <input
+            type="checkbox"
+            id={`my-modal-${message.id}`}
+            className="modal-toggle"
+          />
+          <label
+            htmlFor={`my-modal-${message.id}`}
+            className="modal cursor-pointer "
+          >
+            <label className="modal-box relative  bg-blue" htmlFor="">
+              <div className="bg-white rounded-full block">{avatar}</div>
+            </label>
+          </label>
 
           <div className="ml-2 w-full">
             <p className="flex justify-self-start text-blue text-2xl">
@@ -136,6 +155,3 @@ const ProfileMessage = ({
 };
 
 export default ProfileMessage;
-function useState(arg0: boolean): [any, any] {
-  throw new Error("Function not implemented.");
-}
