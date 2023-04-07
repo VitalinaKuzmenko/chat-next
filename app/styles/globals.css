@@ -15,6 +15,10 @@ button:hover {
   box-shadow: 0 0 10px 0 #fecbce inset, 0 0 10px 2px #fecbce;
   border: 0 solid #fecbce;
 }
+.btn-hover:hover {
+  box-shadow: 0 0 10px 0 #122743 inset, 0 0 5px 2px #122743;
+  border: 0 solid #122743;
+}
 
 .image {
   width: 100px;

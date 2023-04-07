@@ -2,6 +2,7 @@ import Image from "next/image";
 import trash from "/public/icons/trash-icon.svg";
 import pen from "/public/icons/pen-icon.svg";
 import { Message, PersonAvatar } from "../page";
+import { useState as useReactState } from "react";
 
 interface ProfileMessageProps {
   message: Message;
@@ -16,9 +17,32 @@ const ProfileMessage = ({
   setMessages,
   setPeople,
 }: ProfileMessageProps) => {
-  const updateMessage = () => {};
+  const [editing, setEditing] = useReactState(false);
+  const [editedMessage, setEditedMessage] = useReactState<string>("");
+
+  const updateMessage = () => {
+    // Send a PUT request to the server with the form data
+    fetch(
+      `https://vitalina-kuzmenko-chat-server.glitch.me/messages/${message.id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ text: editedMessage }),
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("message is updated");
+        setMessages(data);
+        setEditing(false);
+      })
+      .catch((error) => console.error(error));
+  };
 
   const deleteMessage = () => {
+    //send DELETE request
     fetch(
       `https://vitalina-kuzmenko-chat-server.glitch.me/messages/${message.id}`,
       { method: "DELETE" }
@@ -54,23 +78,55 @@ const ProfileMessage = ({
             <p className="flex justify-self-start text-blue text-2xl">
               {message.from}
             </p>
-            <div className="flex justify-between">
-              <p className=" text-blue text-xl w-4/5">{message.text}</p>
-              <div className="flex mr-2">
-                <Image
-                  className="mx-1 pb-1 cursor-pointer w-4 "
-                  src={pen}
-                  alt="Profile avatar"
-                  onClick={updateMessage}
+
+            {editing ? (
+              <div className="flex justify-between">
+                <input
+                  type="text"
+                  className="bg-white border-0 rounded  px-2 text-blue text-xl w-3/4"
+                  value={editedMessage}
+                  onChange={(e) => setEditedMessage(e.target.value)}
                 />
-                <Image
-                  className="mx-1 pb-1 cursor-pointer w-4"
-                  src={trash}
-                  alt="Profile avatar"
-                  onClick={deleteMessage}
-                />
+                <div className="flex mr-2">
+                  <button
+                    className="btn-hover bg-blue py-1 px-3 ml-1 text-grey rounded"
+                    onClick={updateMessage}
+                  >
+                    Save
+                  </button>
+                  <button
+                    className="btn-hover bg-blue py-1 px-3 ml-1 text-grey rounded"
+                    onClick={() => {
+                      setEditing(false);
+                      setEditedMessage("");
+                    }}
+                  >
+                    Cancel
+                  </button>
+                </div>
               </div>
-            </div>
+            ) : (
+              <div className="flex justify-between">
+                <p className=" text-blue text-xl w-4/5">{message.text}</p>
+                <div className="flex mr-2">
+                  <Image
+                    className="mx-1 pb-1 cursor-pointer w-4 "
+                    src={pen}
+                    alt="Profile avatar"
+                    onClick={() => {
+                      setEditing(true);
+                      setEditedMessage(message.text);
+                    }}
+                  />
+                  <Image
+                    className="mx-1 pb-1 cursor-pointer w-4"
+                    src={trash}
+                    alt="Profile avatar"
+                    onClick={deleteMessage}
+                  />
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -80,3 +136,6 @@ const ProfileMessage = ({
 };
 
 export default ProfileMessage;
+function useState(arg0: boolean): [any, any] {
+  throw new Error("Function not implemented.");
+}
