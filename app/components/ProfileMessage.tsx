@@ -66,6 +66,10 @@ const ProfileMessage = ({
       .catch((error) => console.error(error));
   };
 
+  const defineAvatar = () => {
+    console.log(message.from);
+  };
+
   return (
     <div className="my-2">
       <div className="chat chat-end my-1 flex justify-center">
@@ -73,7 +77,8 @@ const ProfileMessage = ({
           <div className="bg-white rounded-full block cursor-pointer w-12 h-12">
             <label
               className="cursor-pointer"
-              htmlFor={`my-modal-${message.id}`}
+              htmlFor={`my-modal-${message.from}`}
+              onClick={defineAvatar}
             >
               {avatar}
             </label>
@@ -81,17 +86,14 @@ const ProfileMessage = ({
           {/* popup window for big version of avatar */}
           <input
             type="checkbox"
-            id={`my-modal-${message.id}`}
+            id={`my-modal-${message.from}`}
             className="modal-toggle"
           />
           <label
-            htmlFor={`my-modal-${message.id}`}
+            htmlFor={`my-modal-${message.from}`}
             className="modal cursor-pointer "
           >
-            <label
-              className="modal-box relative  bg-blue"
-              htmlFor={`my-modal-${message.id}`}
-            >
+            <label className="modal-box relative  bg-blue">
               <div className="bg-white rounded-full block">{avatar}</div>
             </label>
           </label>
