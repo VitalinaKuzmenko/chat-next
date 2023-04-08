@@ -88,7 +88,10 @@ const ProfileMessage = ({
             htmlFor={`my-modal-${message.id}`}
             className="modal cursor-pointer "
           >
-            <label className="modal-box relative  bg-blue" htmlFor="">
+            <label
+              className="modal-box relative  bg-blue"
+              htmlFor={`my-modal-${message.id}`}
+            >
               <div className="bg-white rounded-full block">{avatar}</div>
             </label>
           </label>

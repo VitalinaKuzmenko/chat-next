@@ -16,6 +16,7 @@ const Buttons = ({ setMessages, setNewMessageStatus }: ButtonsProps) => {
       .then((data: Message[]) => {
         console.log("see all messages button was clicked");
         setMessages(data);
+        setNewMessageStatus(false);
       })
       .catch((error) => console.error(error));
   };
