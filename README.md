@@ -8,7 +8,7 @@ This page was created for educational purposes. It is a chat where user can Read
 
 - The user can see all messages of one person the will be chosen
 
-- The user can sort messages by newest ones or latest ones.
+- The user can sort messages by latest ones and oldest ones.
 
 - The user can create a new message.
 
@@ -30,7 +30,7 @@ https://glitch.com/edit/#!/vitalina-kuzmenko-chat-server
 ## 💻 Screenshots
 
 ![App Screenshot](https://www.dropbox.com/s/rtfcttg0e9rgckp/chat-1.png?raw=1)
-![App Screenshot](https://www.dropbox.com/s/3guxt02718ysbyv/chat-2.png?raw=1)
+![App Screenshot](https://www.dropbox.com/s/gccw2y4sbw45kv6/chat-2.png?raw=1)
 
 
 ## 🤝 Contributing
