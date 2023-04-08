@@ -12,6 +12,8 @@ This page was created for educational purposes. It is a chat where user can Read
 
 - The user can create a new message.
 
+- After the new user has been added - it is created a new random avatar.
+
 - The user can update any message of any person.
 
 - The user can delete a message of any person.
